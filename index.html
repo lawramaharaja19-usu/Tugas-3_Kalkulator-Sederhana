@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Aritmatika Pink</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 300px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .container h2 {
+      margin-bottom: 20px;
+      color: #ff1493;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 15px 0;
+      flex-wrap: wrap;
+    }
+
+    button {
+      width: 55px;
+      height: 55px;
+      font-size: 22px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      background-color: #ff69b4;
+      color: white;
+      transition: 0.3s ease;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    }
+
+    button:hover {
+      background-color: #ff1493;
+      transform: scale(1.1);
+    }
+
+    button.clear {
+      background-color: rgb(165, 62, 131);
+    }
+
+    button.clear:hover {
+      background-color: #444;
+    }
+
+    h3 {
+      margin-top: 20px;
+      font-weight: normal;
+    }
+
+    #result {
+      font-weight: bold;
+      color: #f70c6e;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Kalkulator Aritmatika Pink</h2>
+    <label>Input Bilangan 1:</label>
+    <input type="number" id="num1" placeholder="Masukkan angka pertama">
+
+    <label>Input Bilangan 2:</label>
+    <input type="number" id="num2" placeholder="Masukkan angka kedua">
+
+    <div class="buttons">
+      <button onclick="calculate('+')">+</button>
+      <button onclick="calculate('-')">-</button>
+      <button onclick="calculate('*')">×</button>
+      <button onclick="calculate('/')">÷</button>
+      <button class="clear" onclick="clearResult()">C</button>
+    </div>
+
+    <h3>Hasil: <span id="result">0</span></h3>
+  </div>
+
+  <script>
+    function calculate(operator) {
+      let num1 = parseFloat(document.getElementById("num1").value);
+      let num2 = parseFloat(document.getElementById("num2").value);
+      let result = 0;
+
+      if (isNaN(num1) || isNaN(num2)) {
+        document.getElementById("result").innerText = "Input tidak valid";
+        return;
+      }
+
+      switch (operator) {
+        case '+':
+          result = num1 + num2;
+          break;
+        case '-':
+          result = num1 - num2;
+          break;
+        case '*':
+          result = num1 * num2;
+          break;
+        case '/':
+          result = num2 !== 0 ? num1 / num2 : "Tidak bisa dibagi 0";
+          break;
+      }
+
+      document.getElementById("result").innerText = result;
+    }
+
+    function clearResult() {
+      document.getElementById("num1").value = "";
+      document.getElementById("num2").value = "";
+      document.getElementById("result").innerText = "0";
+    }
+  </script>
+</body>
+</html>
